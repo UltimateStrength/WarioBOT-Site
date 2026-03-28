@@ -1,104 +1,171 @@
-*{
-    margin:0; 
-    padding:0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+/* =============================================
+   WarioBOT — style.css
+   Corrigido: box-sizing, responsividade,
+   sem alturas fixas, layout flexível
+   ============================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.center{
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 1280px;
-    margin:0 auto;
-    padding:0 2%;
+:root {
+  --yellow: #fff186;
+  --yellow-dark: #f5e000;
+  --text-dark: #27210d;
+  --text-muted: #676136;
+  --header-height: 70px;
 }
 
-html,body{
-    height:100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-header{
-    background-color: #ffd757;
-    height: 130px;
-    padding:20px 0;
+body {
+  background-color: var(--yellow);
+  font-family: sans-serif;
+  color: var(--text-dark);
 }
 
-.logo{
-    width:50%;
+/* ---- Header ---- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--yellow-dark);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
 }
 
-.menu{
-    padding-top: 30px;
-    font-size:x-large;
-    width:50%;
-    text-align: right;
+.center {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
-.menu a{
-    color: #27210d;
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 15px;
+.logo img {
+  height: 48px;
+  width: auto;
+  display: block;
 }
 
-section.sobre{
-    height: calc(100% - 200px);
-    position:relative;
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.extras{
-    position:absolute;
-    bottom: -350px;;
-    right:-350px;
-    width: 1000px;
-    height: 1000px;
-    border-radius: 50%;
-    background-color: #ffd757;
+.menu a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: opacity 0.2s;
 }
 
-.addbot{
-    position: absolute;
-    left: -775;
-    top: 248;
-    cursor: pointer;
+.menu a:hover {
+  opacity: 0.65;
 }
 
-.commands{
-    position: absolute;
-    left: -450;
-    top: 250.8;
-    cursor: pointer;
+/* ---- Hero / Seção principal ---- */
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  background-color: var(--yellow);
 }
 
-.more{
-    position: absolute;
-    left: -650;
-    top: 350;
-    cursor: pointer;
+.hero-content {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
-.texto-sobre{
-    margin-top: 100px;
+/* ---- Extras (imagens/botões) ---- */
+.extras {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex: 0 0 auto;
 }
 
-.texto-sobre h1{
-    font-size: 50px;
+.extras > img {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+}
+
+.addbot img,
+.commands img,
+.more img {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.addbot a:hover img,
+.commands a:hover img,
+.more a:hover img {
+  transform: scale(1.04);
+  opacity: 0.85;
+}
+
+/* ---- Texto central ---- */
+.centro {
+  flex: 1 1 280px;
+}
+
+.texto-sobre h1 {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.texto-sobre p {
+  font-size: clamp(1rem, 2vw, 1.4rem);
+}
+
+/* ---- Responsivo ---- */
+@media (max-width: 640px) {
+  .center {
+    flex-direction: column;
+    height: auto;
+    padding: 0.75rem 1rem;
+  }
+
+  header {
+    height: auto;
+    padding: 0.5rem 0;
+  }
+
+  .menu {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-}
-
-.texto-sobre p{
-    margin: 20px 0;
-    color:#27210d;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-
-}
-
-.centro{
-    position: absolute;
-    left: 215;
-    top: 170;
+  }
 }
